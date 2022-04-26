@@ -1,0 +1,39 @@
+.react-tabs {
+}
+
+.react-tabs__tab-list {
+  display: flex;
+  gap: 10px;
+  color: white;
+  list-style: none;
+  outline: none;
+  padding-left: 20px;
+}
+
+.react-tabs__tab {
+  cursor: pointer;
+  color: #f4f4f4;
+  padding: 8px 0;
+  list-style: none;
+  outline: none;
+}
+
+.react-tabs__tab--selected {
+  color: white;
+  border-bottom: 2px solid #eee;
+}
+
+.react-tabs__tab-panel {
+}
+
+.react-tabs__tab-panel--selected {
+}
+
+.react-tabs__tab {
+}
+
+.react-tabs__tab--selected {
+}
+
+.panel-content {
+}

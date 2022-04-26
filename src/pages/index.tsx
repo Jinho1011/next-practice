@@ -1,12 +1,28 @@
 import type { NextPage } from "next";
-import { usePopularQuery } from "../hooks/usePopularQuery";
-import { useTrendingQuery } from "../hooks/useTrendingQuery";
+import { css } from "@emotion/react";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+
+import Trending from "../components/Index/Trending";
+import Popular from "../components/Index/Popular";
 
 const Home: NextPage = () => {
-  const trendings = useTrendingQuery("all", "week");
-  const populars = usePopularQuery();
+  return (
+    <div>
+      <Tabs>
+        <TabList>
+          <Tab>Trending</Tab>
+          <Tab>Popular</Tab>
+        </TabList>
 
-  return <div>Hi</div>;
+        <TabPanel>
+          <Trending />
+        </TabPanel>
+        <TabPanel>
+          <Popular />
+        </TabPanel>
+      </Tabs>
+    </div>
+  );
 };
 
 export default Home;
