@@ -6,7 +6,9 @@ export const useTrendingQuery = (
   media_type: "all" | "movie" | "tv" | "person",
   time_window: "day" | "week"
 ) => {
-  return useQuery(["tmdb", "trending"], () =>
-    fetchTrending(media_type, time_window)
+  return useQuery(
+    ["tmdb", "trending"],
+    () => fetchTrending(media_type, time_window),
+    { suspense: true }
   );
 };

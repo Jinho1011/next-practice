@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { NextPage } from "next";
 import { css } from "@emotion/react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
@@ -15,7 +16,9 @@ const Home: NextPage = () => {
         </TabList>
 
         <TabPanel>
-          <Trending />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Trending />
+          </Suspense>
         </TabPanel>
         <TabPanel>
           <Popular />
