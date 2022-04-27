@@ -127,7 +127,7 @@ export const globalStyle = (
         border-collapse: collapse;
         border-spacing: 0;
       }
-      /* custom table */
+      /* custom style */
       body {
         background: rgb(2, 0, 36);
         background: linear-gradient(
@@ -140,6 +140,7 @@ export const globalStyle = (
         background-repeat: no-repeat;
         height: 100vh;
       }
+      /* add fonts */
       @font-face {
         font-family: "NotoSans-Black";
         src: url("../font/Noto_Sans/NotoSans-Black.ttf") format("ttf");
@@ -155,6 +156,11 @@ export const globalStyle = (
       @font-face {
         font-family: "NotoSans-Regular";
         src: url("../font/Noto_Sans/NotoSans-Regular.ttf") format("ttf");
+      }
+      /* swiper */
+      .swiper-slide-next {
+        transform: scale(1.2) !important;
+        transition: 0.2s;
       }
     `}
   />
