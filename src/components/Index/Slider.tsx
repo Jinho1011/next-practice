@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import React, { useState } from "react";
+import { useState } from "react";
 
 interface SliderProps {
   data: any[];
@@ -7,12 +7,41 @@ interface SliderProps {
 }
 
 const Slider = ({ data, Component }: SliderProps) => {
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const length = data?.length ?? 0;
 
+  const moveNextSlide = () => {
+    if (currentIndex < length - 1) setCurrentIndex(currentIndex + 1);
+  };
+
+  const movePrevSlide = () => {
+    if (currentIndex > 0) setCurrentIndex(currentIndex - 1);
+  };
+
   const handleOnclick = (index: number) => {
-    if (index === currentIndex + 1) setCurrentIndex(currentIndex + 1);
-    else if (index === currentIndex - 1) setCurrentIndex(currentIndex - 1);
+    if (index === currentIndex + 1) moveNextSlide();
+    else if (index === currentIndex - 1) movePrevSlide();
+  };
+
+  const handleTouchStart = (e: any) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: any) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    const offset = touchStart - touchEnd;
+    if (offset > 150) {
+      moveNextSlide();
+    }
+
+    if (offset < -150) {
+      movePrevSlide();
+    }
   };
 
   return (
@@ -31,6 +60,11 @@ const Slider = ({ data, Component }: SliderProps) => {
               key={item.id}
               css={slideItemCss}
               onClick={() => handleOnclick(index)}
+              onTouchStart={(touchStartEvent) =>
+                handleTouchStart(touchStartEvent)
+              }
+              onTouchMove={(touchMoveEvent) => handleTouchMove(touchMoveEvent)}
+              onTouchEnd={() => handleTouchEnd()}
             >
               <div css={() => slideItemContainerCss(isCurrent)}>
                 <Component data={item} />
@@ -59,6 +93,7 @@ const slidesrCss = css`
 const slideItemCss = css`
   width: 314px;
   position: relative;
+  gap: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -66,7 +101,7 @@ const slideItemCss = css`
 
 const slideItemContainerCss = (isCurrent: any) => css`
   transition: transform 500ms ease 0s;
-  transform: scale(${isCurrent ? 1 : 0.8});
+  transform: scale(${isCurrent ? 1 : 0.9});
 `;
 
 export default Slider;
