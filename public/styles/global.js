@@ -142,20 +142,19 @@ export const globalStyle = (
       }
       /* add fonts */
       @font-face {
-        font-family: "NotoSans-Black";
-        src: url("../font/Noto_Sans/NotoSans-Black.ttf") format("ttf");
+        font-family: "NotoSans";
+        src: url("../font/Noto_Sans/NotoSans-Thin.ttf")
+        src: url("../font/Noto_Sans/NotoSans-Regular.ttf") 
+        src: url("../font/Noto_Sans/NotoSans-Black.ttf") 
+        src: url("../font/Noto_Sans/NotoSans-Bold.ttf")
+        src: url("../font/Noto_Sans/NotoSans-Light.ttf") 
       }
       @font-face {
-        font-family: "NotoSans-Bold";
-        src: url("../font/Noto_Sans/NotoSans-Bold.ttf") format("ttf");
+        font-family: "Varela";
+        src: url("../font/Varela_Round/VarelaRound-Regular.ttf")
       }
-      @font-face {
-        font-family: "NotoSans-Light";
-        src: url("../font/Noto_Sans/NotoSans-Light.ttf") format("ttf");
-      }
-      @font-face {
-        font-family: "NotoSans-Regular";
-        src: url("../font/Noto_Sans/NotoSans-Regular.ttf") format("ttf");
+      body {
+        font-family: NotoSans;
       }
       /* swiper */
       .swiper-slide-next {
