@@ -1,28 +1,29 @@
 import { css } from "@emotion/react";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
 interface SliderProps {
   data: any[];
   Component: any;
+  index: number;
+  setIndex: Dispatch<SetStateAction<number>>;
 }
 
-const Slider = ({ data, Component }: SliderProps) => {
+const Slider = ({ data, Component, index, setIndex }: SliderProps) => {
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
-  const [currentIndex, setCurrentIndex] = useState(0);
   const length = data?.length ?? 0;
 
   const moveNextSlide = () => {
-    if (currentIndex < length - 1) setCurrentIndex(currentIndex + 1);
+    if (index < length - 1) setIndex(index + 1);
   };
 
   const movePrevSlide = () => {
-    if (currentIndex > 0) setCurrentIndex(currentIndex - 1);
+    if (index > 0) setIndex(index - 1);
   };
 
   const handleOnclick = (index: number) => {
-    if (index === currentIndex + 1) moveNextSlide();
-    else if (index === currentIndex - 1) movePrevSlide();
+    if (index === index + 1) moveNextSlide();
+    else if (index === index - 1) movePrevSlide();
   };
 
   const handleTouchStart = (e: any) => {
@@ -49,11 +50,11 @@ const Slider = ({ data, Component }: SliderProps) => {
       <div
         css={slidesrCss}
         style={{
-          transform: `translateX(${(-100 / length) * (0.5 + currentIndex)}%)`,
+          transform: `translateX(${(-100 / length) * (0.5 + index)}%)`,
         }}
       >
-        {data.map((item, index) => {
-          const isCurrent = index === currentIndex;
+        {data.map((item, i) => {
+          const isCurrent = i === index;
 
           return (
             <div
