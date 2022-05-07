@@ -80,6 +80,15 @@ const Slider = ({ data, Component, index, setIndex }: SliderProps) => {
 
 const sliderContainerCss = css`
   overflow-x: hidden;
+  -moz-box-sizing: border-box;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
 `;
 
 const slidesrCss = css`
@@ -88,6 +97,7 @@ const slidesrCss = css`
   display: flex;
   flex-direction: row;
   width: fit-content;
+
   transition: transform 500ms ease 0s;
 `;
 
