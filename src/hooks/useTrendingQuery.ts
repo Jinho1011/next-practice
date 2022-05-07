@@ -1,14 +1,13 @@
-import { useQuery } from "react-query";
-import { fetchDetail } from "../api/tmdb/detail";
+import { useQuery, UseQueryResult } from "react-query";
 import { fetchTrending } from "../api/tmdb/trending";
+import { fetchTmdbError } from "../interfaces/tmdb";
+import { fetchTrendingResponse } from "../interfaces/tmdb/trending";
 
 export const useTrendingQuery = (
   media_type: "all" | "movie" | "tv" | "person",
   time_window: "day" | "week"
-) => {
-  return useQuery(
-    ["tmdb", "trending"],
-    () => fetchTrending(media_type, time_window),
-    { suspense: true }
+): UseQueryResult<fetchTrendingResponse, fetchTmdbError> => {
+  return useQuery(["tmdb", "trending"], () =>
+    fetchTrending(media_type, time_window)
   );
 };

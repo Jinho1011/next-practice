@@ -6,7 +6,13 @@ import { globalStyle } from "../../public/styles/global";
 import "../../public/styles/tabs.css";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        suspense: true,
+      },
+    },
+  });
 
   return (
     <QueryClientProvider client={queryClient}>
