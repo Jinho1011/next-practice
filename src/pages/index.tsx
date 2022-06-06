@@ -1,6 +1,8 @@
 import { Suspense } from "react";
 import type { NextPage } from "next";
+import { QueryErrorResetBoundary } from "react-query";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import { ErrorBoundary } from "react-error-boundary";
 
 import Trending from "../components/Index/Trending";
 import Popular from "../components/Index/Popular";
@@ -20,9 +22,20 @@ const Home: NextPage = () => {
         </TabList>
 
         <TabPanel>
-          <Suspense fallback={<LoadingFallback />}>
-            <Trending />
-          </Suspense>
+          <QueryErrorResetBoundary>
+            {({ reset }) => (
+              <ErrorBoundary
+                onReset={reset}
+                fallbackRender={({ resetErrorBoundary }) => (
+                  <div>There was an error!</div>
+                )}
+              >
+                <Suspense fallback={<LoadingFallback />}>
+                  <Trending />
+                </Suspense>
+              </ErrorBoundary>
+            )}
+          </QueryErrorResetBoundary>
         </TabPanel>
         <TabPanel>
           <Popular />

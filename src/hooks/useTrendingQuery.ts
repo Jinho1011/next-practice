@@ -6,7 +6,7 @@ import { fetchTrendingResponse } from "../interfaces/tmdb/trending";
 export const useTrendingQuery = (
   media_type: "all" | "movie" | "tv" | "person",
   time_window: "day" | "week"
-): UseQueryResult<fetchTrendingResponse, fetchTmdbError> => {
+): UseQueryResult<fetchTrendingResponse> => {
   return useQuery(["tmdb", "trending"], () =>
     fetchTrending(media_type, time_window)
   );
